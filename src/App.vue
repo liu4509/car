@@ -14,6 +14,12 @@
       :count="item.goods_count"
       @state-change="getNewChange"
     >
+      <!-- // 自定义插槽  Counter -->
+      <Counter
+        :num="item.goods_count"
+        @num-change="numNewchange(item, $event)"
+        @sub-change="subNewchange(item, $event)"
+      ></Counter>
     </Goods>
     <Footer
       :isfull="fullState"
@@ -33,6 +39,9 @@ import Header from "@/components/Header/Header.vue";
 import Goods from "@/components/Goods/Goods.vue";
 import Footer from "@/components/Footer/Footer.vue";
 import bus from "@/components/eventBus.js";
+
+// 导入 插槽组件
+import Counter from "@/components/Counter/Counter.vue";
 
 export default {
   data() {
@@ -65,11 +74,19 @@ export default {
     inputAllChange(val) {
       this.list.forEach((item) => (item.goods_state = val));
     },
+    //调用子组件的方法
+    numNewchange(val, e) {
+      val.goods_count = e;
+    },
+    subNewchange(val, e) {
+      val.goods_count = e;
+    },
   },
   components: {
     Header,
     Goods,
     Footer,
+    Counter,
   },
   computed: {
     // 通过 Array.every 方法 判断 商品全部多选框的状态

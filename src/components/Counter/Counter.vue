@@ -18,10 +18,10 @@ import bus from "@/components/eventBus.js";
 export default {
   // 获取父组件传过来的自定义数据
   props: {
-    id: {
-      type: Number,
-      required: true,
-    },
+    // id: {
+    //   type: Number,
+    //   required: true,
+    // },
     num: {
       type: Number,
       default: 1,
@@ -32,14 +32,23 @@ export default {
   },
   methods: {
     // 把值传入 bus.$emit()
+    // add() {
+    //   const obj = { id: this.id, value: this.num + 1 };
+    //   bus.$emit("share", obj);
+    // },
+    // sub() {
+    //   if (this.num - 1 == 0) return;
+    //   const obj = { id: this.id, value: this.num - 1 };
+    //   bus.$emit("share", obj);
+    // },
+
+    // 把值传入 this.$emit() 给父组件
     add() {
-      const obj = { id: this.id, value: this.num + 1 };
-      bus.$emit("share", obj);
+      this.$emit("num-change", this.num + 1);
     },
     sub() {
-      if (this.num - 1 == 0) return;
-      const obj = { id: this.id, value: this.num - 1 };
-      bus.$emit("share", obj);
+      if (this.num - 1 === 0) return;
+      this.$emit("sub-change", this.num - 1);
     },
   },
 };

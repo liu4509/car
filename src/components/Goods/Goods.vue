@@ -25,7 +25,9 @@
         <!-- 商品价格 -->
         <span class="goods-price">￥{{ price }}</span>
         <!-- 商品的数量 -->
-        <Counter :num="count" :id="id"></Counter>
+        <!-- <Counter :num="count" :id="id"></Counter> -->
+        <!-- 使用自定义插槽实现 -->
+        <slot></slot>
       </div>
     </div>
   </div>
@@ -33,7 +35,7 @@
 
 <script>
 // 导入组件
-import Counter from "@/components/Counter/Counter.vue";
+// import Counter from "@/components/Counter/Counter.vue";
 
 export default {
   // 获取父组件传过来的自定义数据
@@ -72,7 +74,7 @@ export default {
     },
   },
   components: {
-    Counter,
+    // Counter,
   },
 };
 </script>
